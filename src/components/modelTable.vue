@@ -1,0 +1,81 @@
+<template>
+  <div>
+    <spinner v-show="isLoading"></spinner>
+    <div v-show="!isLoading">
+      <div class="justify-content-centermy-1 row">
+        <b-form-fieldset horizontal label="Rows per page" class="col-6" :label-size="6">
+          <b-form-select :options="[{text:5,value:5},{text:10,value:10},{text:15,value:15}]" v-model="perPage">
+          </b-form-select>
+        </b-form-fieldset>
+
+        <b-form-fieldset horizontal label="Filter" class="col-6" :label-size="2">
+          <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
+        </b-form-fieldset>
+      </div>
+
+      <!-- Main table element -->
+      <b-table striped hover :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage"
+               :filter="filter">
+        <template slot="name" scope="item">
+          {{item.value.first}} {{item.value.last}}
+        </template>
+        <template slot="isActive" scope="item">
+          {{item.value ? 'Yes :)' : 'No :('}}
+        </template>
+        <template slot="actions" scope="item">
+          <b-btn size="sm" @click="details(item.item)">Details</b-btn>
+        </template>
+      </b-table>
+
+      <div class="justify-content-center row my-1">
+        <b-pagination size="md" :total-rows="this.items.length" :per-page="perPage" v-model="currentPage"/>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import Spinner from 'vue-simple-spinner';
+
+  export default {
+    name: 'modelTable',
+    components: { Spinner },
+    props: {
+      items: {
+        type: Array,
+        required: true,
+      },
+      isLoading: {
+        type: Boolean,
+        default: true,
+      },
+    },
+    data() {
+      return {
+        fields: {
+          name: {
+            label: 'Person Full name',
+            sortable: true
+          },
+          age: {
+            label: 'Person age',
+            sortable: true
+          },
+          isActive: {
+            label: 'is Active'
+          },
+          actions: {
+            label: 'Actions'
+          }
+        },
+        currentPage: 1,
+        perPage: 5,
+        filter: null
+      };
+    },
+  };
+</script>
+
+<style lang="scss">
+
+</style>

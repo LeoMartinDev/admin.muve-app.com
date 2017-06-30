@@ -1,0 +1,7 @@
+{
+  "server": {
+    "host": "http://localhost",
+    "port": 1337,
+    "timeout": 1000
+  }
+}
