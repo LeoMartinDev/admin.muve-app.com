@@ -1,7 +1,6 @@
 {
   "server": {
-    "host": "http://localhost",
-    "port": 4248,
+    "host": "http://adminapi.muve-app.com",
     "timeout": 1000
   }
 }
