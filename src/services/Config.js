@@ -2,7 +2,7 @@ import config from '../config.json';
 
 class Config {
   constructor() {
-    if (!config || !config.server || typeof config.server.port !== 'number' || typeof config.server.host !== 'string')
+    if (!config || !config.server || typeof config.server.host !== 'string')
       throw new Error('Missing or wrong config.json!');
     this.json = config;
     this.server = {
