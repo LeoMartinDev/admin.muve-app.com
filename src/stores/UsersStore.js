@@ -73,8 +73,8 @@ const getters = {
   },
   currentUserUpdatable({ route, users}, { currentUser }) {
     if (route.params && route.params.id) {
-      const { email, password, firstName, lastName } = currentUser;
-      return { email, password, firstName, lastName };
+      const { email, firstName, lastName } = currentUser;
+      return { email, firstName, lastName };
     }
     return undefined;
   },
